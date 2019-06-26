@@ -11,7 +11,7 @@ public class Producer {
 
     private static final Logger logger = LoggerFactory.getLogger(Producer.class);
 
-    private static final String TOPIC = "test";
+    private static final String TOPIC = "comics";
 
     @Autowired
     private KafkaTemplate<String,String> kafkaTemplate;
