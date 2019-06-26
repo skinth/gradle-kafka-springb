@@ -17,16 +17,31 @@ public class Consumer implements IConsumerService{
     @Autowired
     private MessageRepository msgRepo;
 
+    private final String TOPIC = "comics";
+
     private final Logger logger = LoggerFactory.getLogger(Consumer.class);
 
-    @KafkaListener(topics = "comics", groupId = "group_id")
+    @KafkaListener(topics = TOPIC, groupId = "group_id")
     public void consume(String message){
+        Message m = new Message();
+        m.setTopic(TOPIC);
+        m.setMessage(message);
+        msgRepo.save(m);
         logger.info(String.format("$$ -> Consumed Message -> %s",message));
     }
 
+    @Override
+    public long count() {
+        return msgRepo.count();
+    }
 
     @Override
     public List<Message> findAll() {
-        return new ArrayList<>();
+        return (List<Message>) msgRepo.findAll();
+    }
+
+    @Override
+    public Message findMessage(Integer id) {
+        return findAll().stream().filter(it -> it.getId() == id).findFirst().get();
     }
 }
