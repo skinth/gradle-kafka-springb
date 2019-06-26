@@ -1,6 +1,6 @@
-package gradle.kafka.springb.controllers;
+package it.tim.restdb.controllers;
 
-import gradle.kafka.springb.services.Producer;
+import it.tim.restdb.services.Producer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
