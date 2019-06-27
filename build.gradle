@@ -30,6 +30,8 @@ dependencies {
 
     // Use JUnit test framework
     testImplementation 'junit:junit:4.12'
+    testCompile 'mysql:mysql-connector-java'
+    testCompile 'org.springframework.kafka:spring-kafka-test'
 
     implementation 'org.springframework.boot:spring-boot-dependencies:2.1.6.RELEASE'
     implementation 'org.springframework.boot:spring-boot-starter-web'

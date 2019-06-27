@@ -16,14 +16,22 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with gradle-kafka-springb. If not, see <https://www.gnu.org/licenses/>.
 */
-package it.tim.restdb.services;
+package it.tim.restdb.controllers;
 
-import it.tim.restdb.entities.Message;
-import java.util.List;
+import org.springframework.boot.web.servlet.error.ErrorController;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-public interface IConsumerService {
+@RestController
+public class CustomErrorController implements ErrorController {
 
-    public long count();
-    public List<Message> findAll();
-    public Message findMessage(Integer id);
+    @RequestMapping("/error")
+    public String handleError() {
+        return "Error!";
+    }
+
+    @Override
+    public String getErrorPath() {
+        return "/error";
+    }
 }

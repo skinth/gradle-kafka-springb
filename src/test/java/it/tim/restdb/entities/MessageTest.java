@@ -18,41 +18,28 @@ along with gradle-kafka-springb. If not, see <https://www.gnu.org/licenses/>.
 */
 package it.tim.restdb.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import org.junit.Before;
+import org.junit.Test;
 
-@Entity
-public class Message {
+import static org.junit.Assert.*;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    private String topic;
-    private String message;
+public class MessageTest {
 
-    public Integer getId() {
-        return id;
+    Message msg;
+
+    @Before
+    public void createMessage() {
+        msg = new Message();
+        msg.setId(1);
+        msg.setMessage("Test message");
+        msg.setTopic("test");
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    @Test
+    public void messageState() {
+        assertTrue(1 == msg.getId());
+        assertSame("test", msg.getTopic());
+        assertSame("Test message", msg.getMessage());
     }
 
-    public String getTopic() {
-        return topic;
-    }
-
-    public void setTopic(String topic) {
-        this.topic = topic;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
 }

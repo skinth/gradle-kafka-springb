@@ -16,28 +16,32 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with gradle-kafka-springb. If not, see <https://www.gnu.org/licenses/>.
 */
-package it.tim.restdb;
+package it.tim.restdb.controllers;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.http.MediaType;
+import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+
 import static org.junit.Assert.*;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest(classes = App.class)
-public class AppTest {
-
-    App app;
+public class KafkaControllerTest extends AbstractControllerTest{
 
     @Before
-    public void createApp() {
-        app = new App();
+    public void createMockMvc() {
+        setUp();
     }
 
     @Test
-    public void helloGradle() throws Exception {
-        assertTrue(app instanceof App);
+    public void publishMessage() throws Exception{
+        String uri = "/kafka/publish";
+        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.post(uri)
+                .contentType(MediaType.APPLICATION_JSON_VALUE).param("message","Message for test")).andReturn();
+
+        int status = mvcResult.getResponse().getStatus();
+        assertEquals(200, status);
     }
+
+
 }
