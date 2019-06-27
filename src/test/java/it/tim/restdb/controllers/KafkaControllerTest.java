@@ -18,8 +18,10 @@ along with gradle-kafka-springb. If not, see <https://www.gnu.org/licenses/>.
 */
 package it.tim.restdb.controllers;
 
+import it.tim.restdb.services.IConsumerService;
 import org.junit.Before;
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;

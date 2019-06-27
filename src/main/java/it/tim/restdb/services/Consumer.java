@@ -38,7 +38,7 @@ public class Consumer implements IConsumerService{
 
     private final Logger logger = LoggerFactory.getLogger(Consumer.class);
 
-    @KafkaListener(topics = TOPIC, groupId = "group_id")
+    @KafkaListener(topics = TOPIC)
     public void consume(String message){
         Message m = new Message();
         m.setTopic(TOPIC);
